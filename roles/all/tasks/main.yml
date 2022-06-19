@@ -1,0 +1,37 @@
+---
+    - name: "Update etc/hosts"
+      become: yes
+      ansible.builtin.lineinfile:
+        path: /etc/hosts
+        line: "{{item}}"
+      with_items:
+        - '192.168.56.10 zabbix-server zabbix-web zabbix-server zabbix.example.com'
+        - '192.168.56.20 zabbix-proxy zabbix-proxy'
+        - '192.168.56.30 zabbix-agent zabbix-agent'
+    
+    - name: update all packages
+      dnf:
+        name: "*"
+        state: latest
+      become: yes
+    
+    - name: Install basic packages
+      dnf:
+        name:
+         - ca-certificates
+         - curl
+         - httpd
+         - python3
+         - python3-pip
+        state: present
+        update_cache: True
+      become: yes
+
+    - name: "Installing Python module"
+      pip:
+        name: "{{item}}"
+      with_items:
+        - netaddr
+        - mysql-connector-python
+        - pymysql
+      become: yes

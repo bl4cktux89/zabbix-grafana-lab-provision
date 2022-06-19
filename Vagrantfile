@@ -6,20 +6,17 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.define "zabbix-server" do |zserver|
-    zserver.vm.box = "centos/7"
-    zserver.vm.disk :disk, size: "100GB", primary: true
+    zserver.vm.box = "almalinux/8"
     zserver.vm.network "private_network", ip: "192.168.56.10"
   end
 
   config.vm.define "zabbix-proxy" do |zproxy|
-    zproxy.vm.box = "centos/7"
-    zproxy.vm.disk :disk, size: "30GB", primary: true
+    zproxy.vm.box = "almalinux/8"
     zproxy.vm.network "private_network", ip: "192.168.56.20"
   end
 
   config.vm.define "zabbix-agent" do |zagent|
-    zagent.vm.box = "centos/7"
-    zagent.vm.disk :disk, size: "20GB", primary: true
+    zagent.vm.box = "almalinux/8"
     zagent.vm.network "private_network", ip: "192.168.56.30"
   end
 

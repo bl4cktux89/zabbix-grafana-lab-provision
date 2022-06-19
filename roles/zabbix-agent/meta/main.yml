@@ -1,0 +1,4 @@
+---
+dependencies:
+  - zabbix-server
+  - zabbix-proxy

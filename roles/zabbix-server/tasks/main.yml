@@ -1,0 +1,11 @@
+---
+    - name: Ensure SELinux is set to disabled mode
+      ansible.builtin.lineinfile:
+        path: /etc/selinux/config
+        regexp: '^SELINUX='
+        line: SELINUX=disabled
+      become: yes
+
+      notify:
+        - start apache
+        - restart apache

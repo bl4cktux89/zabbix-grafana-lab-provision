@@ -1,0 +1,16 @@
+---
+- hosts: zabbix-server
+  roles:
+    - all
+    - mysql
+    - zabbix-server
+
+- hosts: zabbix-proxy
+  roles:
+    - all
+    - mysql
+    - zabbix-proxy
+
+- hosts: zabbix-agent
+  roles:
+    - all
